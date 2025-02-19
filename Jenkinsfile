@@ -13,9 +13,14 @@ pipeline {
                 }
             }
         }
-        stage('Build Maven') {
+        stage('Install dependencies') {
             steps {
-                bat 'mvn clean package -X'
+                bat 'pip  install -r requirements.txt'
+            }
+        }
+        stage('Run python') {
+            steps {
+                bat 'python app.py'
             }
         }
     }
